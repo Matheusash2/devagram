@@ -1,0 +1,50 @@
+{
+  "colors": {
+    "primaryColor1": "#5E49FF",
+    "primaryColor2": "#25CBD3",
+    "primaryColor3": "#F0F5FF",
+    "primaryColor4": "#3BD42D",
+    "whiteColor": "#FFFFFF",
+    "greyColor0": "#F4F4F4",
+    "greyColor1": "#DADADA",
+    "greyColor2": "#7C7786",
+    "greyColor3": "#4D4C4D",
+    "greyColor4": "#333333"
+  },
+  "expo": {
+    "name": "devagram-react-native",
+    "slug": "devagram-react-native",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "O Devagram, deseja acesso a sua galeria."
+        }
+      ]
+    ]
+  }
+}
