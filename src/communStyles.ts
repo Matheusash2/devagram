@@ -1,16 +1,17 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
+import { colors } from "../app.json";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
+const { height, width } = Dimensions.get("screen");
+
+const communStyles = StyleSheet.create({
+  textError: {
+    color: colors.erroColor,
     fontFamily: "biennale-regular",
-    fontSize: 16,
+    lineHeight: 21,
+    fontSize: 14,
+    fontWeight: "400",
+    marginBottom: height * 0.02,
   },
 });
 
-export default styles;
+export default communStyles;

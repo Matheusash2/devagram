@@ -16,3 +16,10 @@ const validatePasswordConfirm = (
 ): boolean => {
   return password == passwordConfirm;
 };
+
+export {
+  validateName,
+  validateEmail,
+  validatePassword,
+  validatePasswordConfirm,
+};

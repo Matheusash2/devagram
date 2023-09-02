@@ -1,12 +1,14 @@
 import { View, Image, TextInput } from "react-native";
 import { IInput } from "./types";
 import styles from "./styles";
+import React, { Component } from "react";
 
 const Input = (props: IInput) => {
   return (
     <View style={styles.containerInput}>
       <View style={styles.row}>
-        {props.icon && <Image source={props.icon} />}
+        {props.iconPNG && <Image source={props.iconPNG} />}
+        {props.iconSVG}
         <TextInput
           placeholder={props.placeholder}
           style={

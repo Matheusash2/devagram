@@ -5,7 +5,7 @@ const { height, width } = Dimensions.get("screen");
 
 const styles = StyleSheet.create({
   containerInput: {
-    marginTop: height / 20,
+    marginTop: height * 0.03,
     width: width / 1.3,
     height: height / 25,
     borderBottomColor: colors.primaryColor1,
@@ -27,6 +27,14 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
+  },
+  textErrorInput: {
+    color: colors.erroColor,
+    fontFamily: "biennale-regular",
+    lineHeight: 21,
+    fontSize: 14,
+    fontWeight: "400",
+    marginBottom: height * 0.02,
   },
 });
 

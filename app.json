@@ -5,6 +5,7 @@
     "primaryColor3": "#F0F5FF",
     "primaryColor4": "#3BD42D",
     "whiteColor": "#FFFFFF",
+    "erroColor": "#F20907",
     "greyColor0": "#F4F4F4",
     "greyColor1": "#DADADA",
     "greyColor2": "#7C7786",
@@ -37,6 +38,9 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "packagerOpts": {
+      "config": "metro.config.js"
     },
     "plugins": [
       [

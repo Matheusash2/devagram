@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.whiteColor,
-    fontFamily: "biennale-regular",
+    fontFamily: "biennale-bold",
     fontSize: 16,
     fontWeight: "600",
     lineHeight: 19.2,
