@@ -3,14 +3,15 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamsList } from "../../_routes/RootStackParams";
-import styles from "./styles";
-import communStyles from "../../communStyles";
+import * as UserService from "../../_services/UserService";
 import Button from "../../_components/Button";
 import Input from "../../_components/Input";
+import UploadImage from "../../_components/UploadImage";
+import styles from "./styles";
+import communStyles from "../../communStyles";
 import UserIcon from "../../_assets/images/user.svg";
 import EmailIcon from "../../_assets/images/email.svg";
 import KeyIcon from "../../_assets/images/key.svg";
-import UploadImage from "../../_components/UploadImage";
 import {
   validateEmail,
   validateName,
@@ -30,6 +31,37 @@ const Register = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordConfirm, setPasswordConfirm] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const onRegister = async () => {
+    try {
+      setLoading(true);
+      const body = new FormData();
+      body.append("nome", name);
+      body.append("email", email);
+      body.append("senha", password);
+      if (image != null) {
+        const file: any = {
+          uri: image,
+          name: image.split("/").pop(),
+          type: `image/${image.split("/").pop().split(".").pop()}`,
+        };
+        
+        body.append("file", file);
+      } else {
+        console.log("Imagem inválida:", image);
+      }
+
+      await UserService.register(body);
+      await UserService.login({ login: email, senha: password });
+      setLoading(false);
+      navigation.navigate("Home");
+    } catch (error: any) {
+      console.log(error);
+      setErro("Erro ao efetuar o cadastro, tente novamente");
+      setLoading(false);
+    }
+  };
 
   const formIsValid = () => {
     const nameIsValid = validateName(name);
@@ -89,8 +121,8 @@ const Register = () => {
       />
       <Button
         placeholder="Cadastrar"
-        onPress={() => {}}
-        loading={false}
+        onPress={() => onRegister()}
+        loading={loading}
         disabled={
           erro != "" ||
           name == "" ||
