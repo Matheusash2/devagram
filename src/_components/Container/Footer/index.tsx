@@ -4,7 +4,7 @@ import HomeIcon from "../../../_assets/images/home_Active.svg";
 import HomeGreyIcon from "../../../_assets/images/home_Grey.svg";
 import PostIcon from "../../../_assets/images/post_Active.svg";
 import PostGreyIcon from "../../../_assets/images/post_Grey.svg";
-import UserIcon from "../../../_assets/images/user.svg";
+import UserIcon from "../../../_assets/images/user_Active.svg";
 import UserGreyIcon from "../../../_assets/images/user_Grey.svg";
 import { useNavigation } from "@react-navigation/native";
 import { RootStackParamsList } from "../../../_routes/RootStackParams";

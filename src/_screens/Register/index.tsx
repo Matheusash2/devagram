@@ -9,7 +9,7 @@ import Input from "../../_components/Input";
 import UploadImage from "../../_components/UploadImage";
 import styles from "./styles";
 import communStyles from "../../communStyles";
-import UserIcon from "../../_assets/images/user.svg";
+import UserIcon from "../../_assets/images/user_Active.svg";
 import EmailIcon from "../../_assets/images/email.svg";
 import KeyIcon from "../../_assets/images/key.svg";
 import {

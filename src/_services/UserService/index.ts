@@ -30,8 +30,12 @@ const getCurrentUser = async () => {
 
 const register = async (body: FormData) => {
   await DevagramApiService.post("/cadastro", body, {
-    "Content-Type": "multipart/form-data"
+    "Content-Type": "multipart/form-data",
   });
 };
 
-export { login, getCurrentUser, register };
+const search = async (filter: string) => {
+  return await DevagramApiService.get(`/pesquisa?filtro=${filter}`);
+};
+
+export { login, getCurrentUser, register, search };

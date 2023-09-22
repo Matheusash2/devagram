@@ -1,7 +1,7 @@
 export interface IHeader {
   default?: boolean;
   searchBar?: ISearchBar;
-  headerNewPublication?: IHeaderNewPublication;
+  //headerNewPublication?: IHeaderNewPublication;
 }
 
 export interface IHeaderNewPublication {

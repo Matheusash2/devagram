@@ -28,17 +28,17 @@ const styles = StyleSheet.create({
         backgroundColor: colors.primaryColor3,
         alignItems: "center",
         borderRadius: 4,
-        marginLeft: 10,
+        marginLeft: 16,
     },
     input: {
         width: width / 2.1,
-        paddingHorizontal: 12,
+        paddingHorizontal: 8,
         fontFamily: "biennale-regular",
-        color: colors.primaryColor4,
+        color: colors.greyColor2,
     },
     inputActive: {
         width: width / 2.1,
-        paddingHorizontal: 12,
+        paddingHorizontal: 8,
         fontFamily: "biennale-regular",
         color: colors.primaryColor1,
     }

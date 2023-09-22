@@ -13,7 +13,6 @@ const Header = (props: IHeader) => {
           <View>
             <LogoHeaderIcon />
           </View>
-
           <View
             style={
               props?.searchBar?.value.length == 0
