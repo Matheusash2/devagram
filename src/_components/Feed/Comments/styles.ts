@@ -27,13 +27,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginTop: 8,
-    padding: 0
+    padding: 0,
   },
   textInput: {
     fontSize: 12,
     fontFamily: "biennale-regular",
     fontWeight: "400",
     color: colors.greyColor2,
+    width: width*0.8,
   }
 });
 

@@ -1,15 +1,14 @@
 export interface IHeader {
   default?: boolean;
   searchBar?: ISearchBar;
-  //headerNewPublication?: IHeaderNewPublication;
+  headerPublication?: IHeaderPublication;
   profileHeader?: IProfileHeader;
   editProfileHeader?: IEditProfileHeader;
 }
 
-export interface IHeaderNewPublication {
-  onPressCancel: () => void;
-  onPressContinue: () => void;
-  continueEnabled: boolean;
+export interface IHeaderPublication {
+  submit: () => void;
+  submitEnable?: boolean;
 }
 
 export interface ISearchBar {
@@ -24,4 +23,5 @@ export interface IProfileHeader {
 
 export interface IEditProfileHeader {
   submit: () => void;
+  submitEnable?: boolean;
 }

@@ -71,6 +71,12 @@ const styles = StyleSheet.create({
         letterSpacing: 0.12,
         color: colors.primaryColor1,
     },
+    textRightDisabled: {
+        fontFamily: "biennale-bold",
+        fontSize: 12, 
+        letterSpacing: 0.12,
+        color: colors.greyColor1,
+    },
     iconRight: {
         right: 12,
         position: "absolute"

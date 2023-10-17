@@ -4,6 +4,7 @@ import Register from "../_screens/Register";
 import Home from "../_screens/Home";
 import Profile from "../_screens/Profile";
 import EditProfile from "../_screens/EditProfile";
+import Publication from "../_screens/Publication";
 
 const Routes = () => {
   const Stack = createNativeStackNavigator();
@@ -15,6 +16,7 @@ const Routes = () => {
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="EditProfile" component={EditProfile} />
+      <Stack.Screen name="Publication" component={Publication} />
     </Stack.Navigator>
   );
 };

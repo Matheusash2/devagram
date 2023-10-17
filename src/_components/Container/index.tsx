@@ -16,7 +16,7 @@ const Container = (props: IContainer) => {
         editProfileHeader={props.headerProps.editProfileHeader}
         profileHeader={props.headerProps.profileHeader}
         default={props.headerProps.default}
-        //headerNewPublication={props.headerProps.headerNewPublication}
+        headerPublication={props.headerProps.headerPublication}
         searchBar={{
           value: filter,
           onChange: (value: string) => setFilter(value),

@@ -23,7 +23,9 @@ const Profile = () => {
   const [profile, setProfile] = useState<IUserData>();
 
   useEffect(() => {
-    getProfile();
+    navigation.addListener("focus", () => {
+      getProfile();
+    }); 
   }, []);
 
   const getProfile = async () => {

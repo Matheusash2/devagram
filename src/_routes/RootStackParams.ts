@@ -4,7 +4,7 @@ export type RootStackParamsList = {
   Login: undefined;
   Register: undefined;
   Home: undefined;
-  NewPublication: undefined;
+  Publication: undefined;
   Profile: IUserData | IUser | undefined;
   EditProfile: IUserData | IUser | undefined;
 };

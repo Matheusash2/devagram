@@ -34,6 +34,12 @@ const register = async (body: FormData) => {
   });
 };
 
+const update = async (body: FormData) => {
+  await DevagramApiService.put("/usuario", body, {
+    "Content-Type": "multipart/form-data",
+  });
+};
+
 const search = async (filter: string) => {
   return await DevagramApiService.get(`/pesquisa?filtro=${filter}`);
 };
@@ -46,4 +52,4 @@ const toggleFollow = async (id: string) => {
   return await DevagramApiService.put(`/seguir?id=${id}`);
 };
 
-export { login, getCurrentUser, register, search, getProfile, toggleFollow };
+export { login, getCurrentUser, register, search, getProfile, toggleFollow, update };

@@ -80,12 +80,51 @@ const Header = (props: IHeader) => {
           </TouchableOpacity>
           <Text style={styles.textName}>Editar Perfil</Text>
           <TouchableOpacity
-            onPress={() => props.editProfileHeader?.submit()}
+            onPress={() =>
+              props.editProfileHeader?.submitEnable &&
+              props.editProfileHeader?.submit()
+            }
             style={styles.iconRight}
           >
-            <Text style={styles.textRight}>Concluir</Text>
+            <Text
+              style={
+                props.editProfileHeader.submitEnable
+                  ? styles.textRight
+                  : styles.textRightDisabled
+              }
+            >
+              Concluir
+            </Text>
           </TouchableOpacity>
         </View>
+      )}
+      {props.headerPublication && (
+        <View style={styles.containerProfile}>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={styles.iconLeft}
+        >
+          <Text style={styles.textLeft}>Cancelar</Text>
+        </TouchableOpacity>
+        <Text style={styles.textName}>Nova Publicação</Text>
+        <TouchableOpacity
+          onPress={() =>
+            props.headerPublication?.submitEnable &&
+            props.headerPublication?.submit()
+          }
+          style={styles.iconRight}
+        >
+          <Text
+            style={
+              props.headerPublication.submitEnable
+                ? styles.textRight
+                : styles.textRightDisabled
+            }
+          >
+            Compartilhar
+          </Text>
+        </TouchableOpacity>
+      </View>
       )}
     </View>
   );

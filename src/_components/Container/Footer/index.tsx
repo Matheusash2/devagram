@@ -24,9 +24,9 @@ const Footer = (props: IFooter) => {
       iconActivated: <HomeIcon />,
     },
     {
-      title: "NewPublication",
+      title: "Publication",
       onPress: () => {
-        navigation.navigate("NewPublication");
+        navigation.navigate("Publication");
       },
       icon: <PostGreyIcon />,
       iconActivated: <PostIcon />,

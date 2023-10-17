@@ -19,4 +19,10 @@ const sendCommented = async (postId: string, message: string) => {
   });
 };
 
-export { getPosts, toggleLike, sendCommented };
+const sendPost = async (body: FormData) => {
+  await DevagramApiService.post("/publicacao", body, {
+    "Content-Type": "multipart/form-data",
+  });
+};
+
+export { getPosts, toggleLike, sendCommented, sendPost };
