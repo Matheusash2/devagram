@@ -6,7 +6,7 @@ import { IPost } from "./Post/types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamsList } from "../../_routes/RootStackParams";
 import { useNavigation } from "@react-navigation/native";
-import { ActivityIndicator, FlatList, View } from "react-native";
+import { ActivityIndicator, Alert, FlatList, View } from "react-native";
 import { colors } from "../../../app.json";
 
 const Feed = (props: { isProfileFeed?: boolean; profile?: IUserData }) => {
@@ -33,6 +33,13 @@ const Feed = (props: { isProfileFeed?: boolean; profile?: IUserData }) => {
             id: post._id,
             image: post.foto,
             description: post.descricao,
+            user: {
+              id: post.idUsuario,
+              name: post?.usuario?.nome || props.profile?.name,
+              avatar: post?.usuario?.avatar || props.profile?.avatar,
+              email: "",
+              token: "",
+            },
             comments: post.comentarios.map((c: any) => {
               return {
                 userId: c.usuarioId,
@@ -40,13 +47,6 @@ const Feed = (props: { isProfileFeed?: boolean; profile?: IUserData }) => {
                 message: c.comentario,
               };
             }),
-            user: {
-              id: post.usuario.idUsuario,
-              name: post.usuario.nome,
-              avatar: post.usuario.avatar,
-              email: "",
-              token: "",
-            },
             likes: post.likes,
           };
           return postFormated;
@@ -55,6 +55,8 @@ const Feed = (props: { isProfileFeed?: boolean; profile?: IUserData }) => {
         setIsLoading(false);
       } catch (error: any) {
         setIsLoading(false);
+        console.log(error);
+        Alert.alert("Erro", "Erro ao carregar o Feed")
       }
     }
   };

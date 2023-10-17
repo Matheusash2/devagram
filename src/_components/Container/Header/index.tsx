@@ -4,8 +4,22 @@ import SearchIcon from "../../../_assets/images/search.svg";
 import { IHeader } from "./types";
 import styles from "./styles";
 import { colors } from "../../../../app.json";
+import { TouchableOpacity } from "react-native";
+import ArrowLeftIcon from "../../../_assets/images/arrowLeft.svg";
+import LogoutIcon from "../../../_assets/images/logout.svg";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamsList } from "../../../_routes/RootStackParams";
+import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Header = (props: IHeader) => {
+  type navigationTypes = NativeStackNavigationProp<RootStackParamsList, "Home">;
+  const navigation = useNavigation<navigationTypes>();
+  const logout = async () => {
+    await AsyncStorage.removeItem("token");
+    navigation.navigate("Login");
+  };
+
   return (
     <View style={styles.headerContainer}>
       {props.default && (
@@ -36,6 +50,41 @@ const Header = (props: IHeader) => {
               autoCapitalize={"none"}
             />
           </View>
+        </View>
+      )}
+      {props.profileHeader && (
+        <View style={styles.containerProfile}>
+          {props.profileHeader.isExternalProfile && (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={styles.iconLeft}
+            >
+              <ArrowLeftIcon />
+            </TouchableOpacity>
+          )}
+          <Text style={styles.textName}>{props.profileHeader.userName}</Text>
+          {!props.profileHeader.isExternalProfile && (
+            <TouchableOpacity onPress={() => logout()} style={styles.iconRight}>
+              <LogoutIcon />
+            </TouchableOpacity>
+          )}
+        </View>
+      )}
+      {props.editProfileHeader && (
+        <View style={styles.containerProfile}>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={styles.iconLeft}
+          >
+            <Text style={styles.textLeft}>Cancelar</Text>
+          </TouchableOpacity>
+          <Text style={styles.textName}>Editar Perfil</Text>
+          <TouchableOpacity
+            onPress={() => props.editProfileHeader?.submit()}
+            style={styles.iconRight}
+          >
+            <Text style={styles.textRight}>Concluir</Text>
+          </TouchableOpacity>
         </View>
       )}
     </View>

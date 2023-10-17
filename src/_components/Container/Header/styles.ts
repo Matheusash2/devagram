@@ -41,6 +41,39 @@ const styles = StyleSheet.create({
         paddingHorizontal: 8,
         fontFamily: "biennale-regular",
         color: colors.primaryColor1,
+    },
+    containerProfile: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
+    },
+    textName: {
+        fontFamily: "biennale-bold",
+        fontSize: 16,
+        letterSpacing: 0.16,
+        color: colors.greyColor4
+    },
+    iconLeft: {
+        left: 12,
+        position: "absolute"
+    },
+    textLeft: {
+        fontFamily: "biennale-regular",
+        fontSize: 12, 
+        letterSpacing: 0.12,
+        color: colors.greyColor3,
+        fontWeight: "500"
+    },
+    textRight: {
+        fontFamily: "biennale-bold",
+        fontSize: 12, 
+        letterSpacing: 0.12,
+        color: colors.primaryColor1,
+    },
+    iconRight: {
+        right: 12,
+        position: "absolute"
     }
 })
 

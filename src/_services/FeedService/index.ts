@@ -9,4 +9,14 @@ const getPosts = async (id?: string) => {
   return await DevagramApiService.get(url);
 };
 
-export { getPosts };
+const toggleLike = async (postId: string) => {
+  return await DevagramApiService.put(`/like?id=${postId}`);
+};
+
+const sendCommented = async (postId: string, message: string) => {
+  return await DevagramApiService.put(`/comentario?id=${postId}`, {
+    comentario: message,
+  });
+};
+
+export { getPosts, toggleLike, sendCommented };

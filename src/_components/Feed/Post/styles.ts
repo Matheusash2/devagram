@@ -10,21 +10,21 @@ const styles = StyleSheet.create({
   user: {
     flexDirection: "row",
     alignItems: "center",
-    marginLeft: 10,
-    marginBottom: 8
+    marginLeft: 12,
+    marginBottom: 8,
   },
   userName: {
     fontSize: 12,
     fontFamily: "biennale-bold",
     fontWeight: "600",
-    lineHeight: 24,
     color: colors.greyColor4,
+    paddingRight: 4,
   },
   likedAndComment: {
     flexDirection: "row",
     alignItems: "center",
-    marginHorizontal: 16,
-    marginVertical: 8
+    marginHorizontal: 12,
+    marginVertical: 8,
   },
   icon: {
     marginRight: 8,
@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontFamily: "biennale-regular",
     fontWeight: "400",
-    lineHeight: 20,
     color: colors.greyColor4,
   },
   likesBold: {
@@ -41,14 +40,28 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
   containerDescription: {
-    marginHorizontal: 16,
+    marginHorizontal: 12,
+    flexDirection: "row",
+    alignItems: "center",
   },
-  Description: {
+  description: {
     fontSize: 12,
     fontFamily: "biennale-regular",
     fontWeight: "400",
-    lineHeight: 24,
-    color: colors.greyColor4
+    color: colors.greyColor4,
+  },
+  btnAction: {
+    alignItems: "center",
+    justifyContent: "center",
+    display: "flex",
+    marginTop: 0,
+    maxHeight: 12,
+  },
+  btnDescription: {
+    color: colors.primaryColor2,
+    fontFamily: "biennale-bold",
+    fontSize: 12,
+    fontWeight: "500",
   },
   avatar: {
     height: 32,
@@ -57,9 +70,9 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   image: {
-    height: height*0.5,
-    width: width
-  }
+    height: height * 0.5,
+    width: width,
+  },
 });
 
 export default styles;

@@ -12,10 +12,16 @@ import * as UserService from "../../../../_services/UserService";
 import { colors } from "../../../../../app.json";
 import styles from "./styles";
 import AvatarIcon from "../../../../_assets/images/avatar_Search.svg";
+import Avatar from "../../../Avatar";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamsList } from "../../../../_routes/RootStackParams";
+import { useNavigation } from "@react-navigation/native";
 
 const Search = (props: { filter: string }) => {
   const [users, setUsers] = useState<IUserData[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  type navigationTypes = NativeStackNavigationProp<RootStackParamsList, "Home">;
+  const navigation = useNavigation<navigationTypes>();
 
   useEffect(() => {
     setUsers([]);
@@ -23,11 +29,11 @@ const Search = (props: { filter: string }) => {
       findUsers();
     }
   }, [props.filter]);
-  
+
   const findUsers = useCallback(async () => {
     try {
       setIsLoading(true);
-      
+
       const { data } = await UserService.search(props.filter);
       const usersFormated: IUserData[] = data?.map(
         (user: any, index: number) => {
@@ -39,7 +45,7 @@ const Search = (props: { filter: string }) => {
             avatar: user.avatar,
             followers: user.seguidores,
             following: user.seguindo,
-            posts: user.publicacoes,
+            posts: user.publicacoes,            
           };
           return userFormated;
         }
@@ -53,15 +59,16 @@ const Search = (props: { filter: string }) => {
 
   const renderItem = (user: IUserData) => (
     <TouchableOpacity
-      style={user.index % 2 != 0 ? styles.backgroundOdd : styles.backgroundPair}
+      onPress={() => navigation.navigate("Profile", user)}
+      style={
+        user.index && user.index % 2 != 0
+          ? styles.backgroundOdd
+          : styles.backgroundPair
+      }
     >
       <View style={styles.row}>
         <View>
-          {user.avatar ? 
-            <Image source={{ uri: user.avatar }} style={styles.imageUser}/>
-           : 
-            <AvatarIcon />
-          }
+          <Avatar user={user} />
         </View>
         <View>
           <Text style={styles.name}>{user.name}</Text>
@@ -73,21 +80,21 @@ const Search = (props: { filter: string }) => {
 
   return (
     <View style={styles.containerSearch}>
-      {users.length > 0 && 
+      {users.length > 0 && (
         <FlatList
           data={users}
-          keyExtractor={item => item.id.toString()}
+          keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => renderItem(item)}
           onEndReachedThreshold={0.1}
-          ListFooterComponent={() => (
-            isLoading ? 
+          ListFooterComponent={() =>
+            isLoading ? (
               <View>
                 <ActivityIndicator size={30} color={colors.primaryColor1} />
               </View>
-             : null
-            )}
+            ) : null
+          }
         />
-      }
+      )}
     </View>
   );
 };

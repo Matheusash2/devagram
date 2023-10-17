@@ -18,6 +18,7 @@ export interface IUserData {
   avatar: string;
   followers: number;
   following: number;
+  followThisUser?: boolean;
   posts: number;
-  index: number;
+  index?: number;
 }
