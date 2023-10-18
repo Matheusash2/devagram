@@ -2,20 +2,17 @@ import { useCallback, useEffect, useState } from "react";
 import {
   View,
   FlatList,
-  ActivityIndicator,
   TouchableOpacity,
-  Image,
   Text,
 } from "react-native";
 import { IUserData } from "../../../../_services/UserService/types";
 import * as UserService from "../../../../_services/UserService";
-import { colors } from "../../../../../app.json";
 import styles from "./styles";
-import AvatarIcon from "../../../../_assets/images/avatar_Search.svg";
 import Avatar from "../../../Avatar";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamsList } from "../../../../_routes/RootStackParams";
 import { useNavigation } from "@react-navigation/native";
+import Loading from "../../../Loading";
 
 const Search = (props: { filter: string }) => {
   const [users, setUsers] = useState<IUserData[]>([]);
@@ -86,13 +83,7 @@ const Search = (props: { filter: string }) => {
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => renderItem(item)}
           onEndReachedThreshold={0.1}
-          ListFooterComponent={() =>
-            isLoading ? (
-              <View>
-                <ActivityIndicator size={30} color={colors.primaryColor1} />
-              </View>
-            ) : null
-          }
+          ListFooterComponent={() => ( <Loading isLoading={isLoading}/> )}
         />
       )}
     </View>

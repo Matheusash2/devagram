@@ -1,7 +1,7 @@
-import { Text, View, TouchableOpacity, ActivityIndicator } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import styles from "./styles";
 import { IButton } from "./types";
-import { colors } from "../../../app.json";
+import Loading from "../Loading";
 
 const Button = (props: IButton) => {
   return (
@@ -15,11 +15,8 @@ const Button = (props: IButton) => {
             : [styles.button, props.style]
         }
       >
-        {props.loading ? (
-          <ActivityIndicator size={30} color={colors.greyColor2} />
-        ) : (
-          <Text style={styles.text}>{props.placeholder}</Text>
-        )}
+        <Loading isLoading={props.loading}/>
+        {!props.loading && <Text style={styles.text}>{props.placeholder}</Text>}
       </TouchableOpacity>
     </View>
   );

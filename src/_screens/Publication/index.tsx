@@ -8,6 +8,7 @@ import * as ImagePicker from "expo-image-picker";
 import * as FeedService from "../../_services/FeedService";
 import CameraIcon from "../../_assets/images/camera.svg";
 import styles from "./styles";
+import Loading from "../../_components/Loading";
 
 const Publication = () => {
   type navigationTypes = NativeStackNavigationProp<
@@ -17,6 +18,7 @@ const Publication = () => {
   const navigation = useNavigation<navigationTypes>();
   const [description, setDescription] = useState<string>("");
   const [image, setImage] = useState<any>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     pickImage();
@@ -37,6 +39,7 @@ const Publication = () => {
   const send = async () => {
     if (image || description) {
       try {
+        setIsLoading(true);
         const body = new FormData();
         if (image) {
           const file: any = {
@@ -50,8 +53,10 @@ const Publication = () => {
           body.append("descricao", description);
         }
         await FeedService.sendPost(body);
+        setIsLoading(false);
         navigation.navigate("Home");
       } catch (error: any) {
+        setIsLoading(false);
         Alert.alert("Erro", "Erro ao enviar postagem");
       }
     }
@@ -59,6 +64,7 @@ const Publication = () => {
 
   return (
     <Container
+      isLoading={isLoading}
       footerProps={{ currentTab: "Publication" }}
       headerProps={{
         headerPublication: {
@@ -67,26 +73,28 @@ const Publication = () => {
         },
       }}
     >
-      <View style={styles.container}>
-        <TouchableOpacity
-          onPress={() => pickImage()}
-          style={styles.containerImage}
-        >
-          {image ? (
-            <Image source={{ uri: image }} style={styles.image} />
-          ) : (
-            <CameraIcon />
-          )}
-        </TouchableOpacity>
-        <View style={styles.containerDescription}>
-          <TextInput
-            placeholder="Escreva uma legenda..."
-            multiline={true}
-            onChangeText={(value) => setDescription(value)}
-            value={description}
-            autoCapitalize="none"
-            style={styles.description}
-          />
+      <View>
+        <View style={styles.container}>
+          <TouchableOpacity
+            onPress={() => pickImage()}
+            style={styles.containerImage}
+          >
+            {image ? (
+              <Image source={{ uri: image }} style={styles.image} />
+            ) : (
+              <CameraIcon />
+            )}
+          </TouchableOpacity>
+          <View style={styles.containerDescription}>
+            <TextInput
+              placeholder="Escreva uma legenda..."
+              multiline={true}
+              onChangeText={(value) => setDescription(value)}
+              value={description}
+              autoCapitalize="none"
+              style={styles.description}
+            />
+          </View>
         </View>
       </View>
     </Container>

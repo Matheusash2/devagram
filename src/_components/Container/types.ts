@@ -6,4 +6,5 @@ export interface IContainer {
   children: ReactElement<any, any>;
   footerProps: IFooter;
   headerProps: IHeader;
+  isLoading?: boolean;
 }

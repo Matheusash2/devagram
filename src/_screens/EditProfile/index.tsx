@@ -9,6 +9,7 @@ import { useState } from "react";
 import styles from "./styles";
 import * as ImagePicker from "expo-image-picker";
 import * as UserService from "../../_services/UserService";
+import Loading from "../../_components/Loading";
 
 const EditProfile = () => {
   type navigationTypes = NativeStackNavigationProp<
@@ -22,6 +23,7 @@ const EditProfile = () => {
   const [name, setName] = useState<string>("");
   const [hasName, setHasName] = useState<boolean>(false);
   const [image, setImage] = useState<any>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -39,6 +41,7 @@ const EditProfile = () => {
   const editProfile = async () => {
     if (image || name) {
       try {
+        setIsLoading(true);
         const body = new FormData();
         if (image) {
           const file: any = {
@@ -52,8 +55,10 @@ const EditProfile = () => {
           body.append("nome", name);
         }
         await UserService.update(body);
+        setIsLoading(false);
         navigation.goBack();
       } catch (error: any) {
+        setIsLoading(false);
         Alert.alert("Erro", "Erro ao alterar dados do perfil");
       }
     }
@@ -61,6 +66,7 @@ const EditProfile = () => {
 
   return (
     <Container
+      isLoading={isLoading}
       headerProps={{
         editProfileHeader: { submit: editProfile, submitEnable: image || name },
       }}
@@ -70,7 +76,7 @@ const EditProfile = () => {
         {profile && (
           <View>
             <View style={styles.containerImage}>
-              <Avatar user={profile} withLinearGradient={true} image={image}/>
+              <Avatar user={profile} withLinearGradient={true} image={image} />
               <TouchableOpacity onPress={() => pickImage()}>
                 <Text style={styles.textUpdateImage}>
                   Alterar foto do perfil

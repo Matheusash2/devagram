@@ -8,6 +8,7 @@ import { RootStackParamsList } from "../../_routes/RootStackParams";
 import { useNavigation } from "@react-navigation/native";
 import { ActivityIndicator, Alert, FlatList, View } from "react-native";
 import { colors } from "../../../app.json";
+import Loading from "../Loading";
 
 const Feed = (props: { isProfileFeed?: boolean; profile?: IUserData }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -67,13 +68,7 @@ const Feed = (props: { isProfileFeed?: boolean; profile?: IUserData }) => {
               keyExtractor={item => item.id.toString()}
               renderItem={({ item }) => (<Post post={item} />)}
               onEndReachedThreshold={0.1}
-              ListFooterComponent={() => (
-                isLoading ? 
-                  <View>
-                    <ActivityIndicator size={30} color={colors.primaryColor1} />
-                  </View>
-                 : null
-                )}
+              ListFooterComponent={() => ( <Loading isLoading={isLoading}/> )}
             />
     </View>
   );

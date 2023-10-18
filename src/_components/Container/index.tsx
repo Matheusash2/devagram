@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import styles from "./styles";
 import { useState } from "react";
 import Search from "./Header/Search";
+import Loading from "../Loading";
 
 const Container = (props: IContainer) => {
   const [filter, setFilter] = useState<string>("");
@@ -22,8 +23,11 @@ const Container = (props: IContainer) => {
           onChange: (value: string) => setFilter(value),
         }}
       />
-      <Search filter={filter}/>
-      <View style={styles.content}>{props.children}</View>
+      <Search filter={filter} />
+      <View style={styles.content}>
+        {!props.isLoading && props.children} 
+        <Loading isLoading={props.isLoading}/>
+      </View>
       <Footer currentTab={props.footerProps.currentTab} />
     </SafeAreaView>
   );
